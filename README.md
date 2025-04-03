@@ -5,6 +5,7 @@ With your full resolution mesh be `V, F` and your decimated mesh be `Vd, Fd` the
 
 Note: this algorithm might be very slow for large shapes since the `igl:decimate` function is called `250` times assuming you reduce the shape by `500` triangles.
 
+Note: this algorithm uses the old libigl decimate functions (which do NOT avoid intersections of the shapes) and thus result in nicer triangulation.
 ## ⚙️ Installation
 
 This repo comes with c++ code, python code and a matlab mex wrapper 💡
@@ -30,6 +31,9 @@ import fine2coarsedec as f2cd
 target_num_faces = 100
 use_qslim = False # choose different decimation algorithm
 vred, fred, ff2c, vf2c = f2cd.decimate(v, f, target_num_faces, use_qslim)
+
+# in case you only need decimated shapes without fine to coarse map (which is faster)
+vred, fred = f2cd.decimate_no_map(v, f, target_num_faces, use_qslim)
 ```
 
 🔺 Matlab
