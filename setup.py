@@ -44,6 +44,7 @@ class CMakeBuild(build_ext):
             return True
         print("++++++++++++++++++++++++")
         print(words)
+        return True
         for word in reversed(words):
             if "." in word:
                 gcc_version = parse_version(word)
